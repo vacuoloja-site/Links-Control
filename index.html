@@ -181,7 +181,7 @@
     }
 
     function resetarPlanilha() {
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbxEC1ygnkBv1SNELkXcq7jEzF4fUoGwUVhL3X7z5sX79bh0F1_6w1k5cQssRvl3BL2agQ/exec"; // cole aqui a URL do seu WebApp
+      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaEc-ivLmrYPtPS4unbx-ZG76a4RXRAYE-FSFxGWPBAZ5qctruW7nwzyidzziltlUWIw/exec"; // cole aqui a URL do seu WebApp
       fetch(webAppUrl + "?action=reset")
         .then(resp => resp.text())
         .then(texto => alert(texto))
@@ -189,7 +189,7 @@
     }
 
     function exportarCSVWebApp() {
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbxEC1ygnkBv1SNELkXcq7jEzF4fUoGwUVhL3X7z5sX79bh0F1_6w1k5cQssRvl3BL2agQ/exec"; // cole aqui a URL do seu WebApp
+      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaEc-ivLmrYPtPS4unbx-ZG76a4RXRAYE-FSFxGWPBAZ5qctruW7nwzyidzziltlUWIw/exec"; // cole aqui a URL do seu WebApp
       fetch(webAppUrl + "?action=export")
         .then(resp => resp.text())
         .then(csv => {
@@ -205,7 +205,7 @@
     }
 
         async function verificarAcesso() {
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbxEC1ygnkBv1SNELkXcq7jEzF4fUoGwUVhL3X7z5sX79bh0F1_6w1k5cQssRvl3BL2agQ/exec"; // cole aqui a URL do seu WebApp
+      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaEc-ivLmrYPtPS4unbx-ZG76a4RXRAYE-FSFxGWPBAZ5qctruW7nwzyidzziltlUWIw/exec"; // cole aqui a URL do seu WebApp
       try {
         const resp = await fetch(webAppUrl);
         const texto = await resp.text();
