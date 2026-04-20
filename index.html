@@ -205,27 +205,32 @@
     }
 
         async function verificarAcesso() {
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaEc-ivLmrYPtPS4unbx-ZG76a4RXRAYE-FSFxGWPBAZ5qctruW7nwzyidzziltlUWIw/exec"; // cole aqui a URL do seu WebApp
-      try {
-        const resp = await fetch(webAppUrl);
-        const texto = await resp.text();
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbxOrfmnB7rSgOFS4VMhMt7hvmu9i-ofgM6JsjxDVRqYlm6kXl_s0NH3D4PpkwcuhGe30Q/exec";
+  try {
+    const resp = await fetch(webAppUrl);
+    const texto = await resp.text();
 
-        if (texto.trim() === "OK") {
-          // Usuário autorizado → mostra o painel
-          document.getElementById("painel").style.display = "block";
-          document.getElementById("mensagem").innerText = "Acesso autorizado.";
-          atualizarListaProdutos();
-          atualizarListaOrigens();
-          carregarDadosPlanilha();
-        } else {
-          // Usuário não autorizado → bloqueia
-          document.getElementById("mensagem").innerText = "Acesso negado. Você não tem permissão.";
-          document.getElementById("painel").style.display = "none";
-        }
-      } catch (e) {
-        document.getElementById("mensagem").innerText = "Erro ao verificar acesso.";
-      }
+    // DEBUG: mostra no console o que veio do WebApp
+    console.log("Resposta do WebApp:", texto);
+
+    if (texto.trim() === "OK") {
+      document.getElementById("painel").style.display = "block";
+      document.getElementById("mensagem").innerText = "Acesso autorizado.";
+      atualizarListaProdutos();
+      atualizarListaOrigens();
+      carregarDadosPlanilha();
+    } else if (texto.trim() === "NEGADO") {
+      document.getElementById("mensagem").innerText = "Acesso negado. Você não tem permissão.";
+      document.getElementById("painel").style.display = "none";
+    } else {
+      document.getElementById("mensagem").innerText = "Resposta inesperada: " + texto;
     }
+  } catch (e) {
+    console.error("Erro no fetch:", e);
+    document.getElementById("mensagem").innerText = "Erro ao verificar acesso.";
+  }
+}
+
 
     // Chama a verificação assim que a página carregar
     window.onload = verificarAcesso;
